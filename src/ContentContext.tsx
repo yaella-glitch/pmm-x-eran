@@ -11,7 +11,7 @@ type ContextValue = {
   hasOverride: boolean;
 };
 
-const STORAGE_KEY = "pmm-eran-content-override-v2";
+const STORAGE_KEY = "pmm-eran-content-override-v3";
 
 const ContentContext = createContext<ContextValue | null>(null);
 

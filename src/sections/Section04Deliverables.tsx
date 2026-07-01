@@ -218,7 +218,8 @@ function ItemPreview({ item }: { item: Item }) {
   const hasImages = images.length > 0;
   const impact = (item.impact || "").trim();
 
-  const cycleNext = () => setImgIdx((i) => (i + 1) % Math.max(images.length, 1));
+  const next = () => setImgIdx((i) => (i + 1) % Math.max(images.length, 1));
+  const prev = () => setImgIdx((i) => (i - 1 + images.length) % Math.max(images.length, 1));
 
   return (
     <>
@@ -255,44 +256,63 @@ function ItemPreview({ item }: { item: Item }) {
             </span>
           </div>
         ) : (
-          <ImageCardStack images={images} activeIdx={imgIdx} onClick={cycleNext} />
+          <ImageCardStack images={images} activeIdx={imgIdx} onClick={next} />
         )}
 
-        {/* Gallery dots only when multiple */}
+        {/* Prev/next arrows + dots — visible only with multiple images */}
         {images.length > 1 && (
-          <div
-            style={{
-              position: "absolute",
-              bottom: "1rem",
-              left: "50%",
-              transform: "translateX(-50%)",
-              display: "flex",
-              gap: 6,
-              alignItems: "center",
-              background: "rgba(0,0,0,0.4)",
-              padding: "0.4rem 0.75rem",
-              borderRadius: 999,
-              backdropFilter: "blur(6px)",
-            }}
-          >
-            {images.map((_, i) => (
-              <button
-                key={i}
-                onClick={(e) => { e.stopPropagation(); setImgIdx(i); }}
-                aria-label={`Image ${i + 1}`}
-                style={{
-                  width: i === imgIdx ? 20 : 6,
-                  height: 6,
-                  borderRadius: 3,
-                  background: i === imgIdx ? "white" : "rgba(255,255,255,0.4)",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  transition: "all 0.3s",
-                }}
-              />
-            ))}
-          </div>
+          <>
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              aria-label="Previous image"
+              style={arrowBtnStyle("left")}
+            >
+              ←
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              aria-label="Next image"
+              style={arrowBtnStyle("right")}
+            >
+              →
+            </button>
+            <div
+              style={{
+                position: "absolute",
+                bottom: "1rem",
+                left: "50%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                gap: 8,
+                alignItems: "center",
+                background: "rgba(0,0,0,0.55)",
+                padding: "0.5rem 0.85rem",
+                borderRadius: 999,
+                backdropFilter: "blur(6px)",
+              }}
+            >
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setImgIdx(i); }}
+                  aria-label={`Image ${i + 1}`}
+                  style={{
+                    width: i === imgIdx ? 24 : 8,
+                    height: 8,
+                    borderRadius: 4,
+                    background: i === imgIdx ? "white" : "rgba(255,255,255,0.45)",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    transition: "all 0.3s",
+                  }}
+                />
+              ))}
+              <span style={{ marginLeft: 6, fontSize: 11, color: "rgba(255,255,255,0.75)", fontFamily: "Figtree, sans-serif" }}>
+                {imgIdx + 1} / {images.length}
+              </span>
+            </div>
+          </>
         )}
       </div>
 
@@ -322,31 +342,92 @@ function ItemPreview({ item }: { item: Item }) {
             {item.description}
           </p>
         )}
-        {impact && (
-          <div
-            style={{
-              padding: "0.85rem 1.1rem",
-              borderRadius: 12,
-              background: "linear-gradient(135deg, rgba(165,138,255,0.14), rgba(56,189,248,0.08))",
-              border: "0.5px solid rgba(99,102,241,0.35)",
-              display: "flex",
-              gap: "0.75rem",
-              alignItems: "baseline",
-            }}
-          >
-            <span
-              className="font-serif-italic"
-              style={{ fontSize: 12, color: "var(--c-indigo)", flexShrink: 0, fontWeight: 600 }}
-            >
-              → impact
-            </span>
-            <span style={{ fontSize: 14, color: "var(--color-text)", lineHeight: 1.5 }}>
-              {impact}
-            </span>
-          </div>
-        )}
+        {impact && <ImpactBlock text={impact} />}
       </div>
     </>
+  );
+}
+
+function arrowBtnStyle(side: "left" | "right"): React.CSSProperties {
+  return {
+    position: "absolute",
+    top: "50%",
+    [side]: "1rem",
+    transform: "translateY(-50%)",
+    width: 42,
+    height: 42,
+    borderRadius: 999,
+    background: "rgba(0,0,0,0.55)",
+    border: "0.5px solid rgba(255,255,255,0.2)",
+    color: "white",
+    fontSize: 18,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontFamily: "inherit",
+    backdropFilter: "blur(6px)",
+    zIndex: 10,
+  };
+}
+
+function ImpactBlock({ text }: { text: string }) {
+  // Split on common metric separators so we can render "metric || metric || metric"
+  const parts = text
+    .split(/\s*(?:·|\|\||,)\s*/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  return (
+    <div
+      style={{
+        padding: "1rem 1.25rem",
+        borderRadius: 12,
+        background: "linear-gradient(135deg, rgba(165,138,255,0.18), rgba(56,189,248,0.10))",
+        border: "0.5px solid rgba(99,102,241,0.4)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.6rem",
+      }}
+    >
+      <span
+        style={{
+          fontSize: 11,
+          color: "var(--c-indigo)",
+          fontWeight: 700,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+        }}
+      >
+        Impact
+      </span>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "baseline",
+          gap: "0.65rem 0.9rem",
+        }}
+      >
+        {parts.map((p, i) => (
+          <span key={i} style={{ display: "flex", alignItems: "baseline", gap: "0.6rem" }}>
+            <span
+              style={{
+                fontSize: 16,
+                fontWeight: 500,
+                color: "var(--color-text)",
+                lineHeight: 1.35,
+              }}
+            >
+              {p}
+            </span>
+            {i < parts.length - 1 && (
+              <span style={{ color: "var(--c-indigo)", fontWeight: 700, opacity: 0.65 }}>||</span>
+            )}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -386,11 +467,11 @@ function ImageCardStack({
               layout
               initial={false}
               animate={{
-                y: depth * 12,
-                x: depth * 8,
-                scale: 1 - depth * 0.04,
-                opacity: 1 - depth * 0.25,
-                rotate: depth * 1.5,
+                y: depth * 14,
+                x: depth * 10,
+                scale: 1 - depth * 0.05,
+                opacity: 1 - depth * 0.35,
+                rotate: depth * 2,
               }}
               transition={{ type: "spring", stiffness: 220, damping: 26 }}
               style={{
