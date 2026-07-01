@@ -28,19 +28,19 @@
     "label": "What is our goal?",
     "title": "Product capabilities → Customer value",
     "personas": [
-      { "name": "Marketing", "avatar": "" },
-      { "name": "IT", "avatar": "" },
-      { "name": "HR", "avatar": "" },
-      { "name": "PMO", "avatar": "" }
+      { "name": "Marketing", "avatar": "/personas/Marketing.png" },
+      { "name": "IT", "avatar": "/personas/IT.png" },
+      { "name": "HR", "avatar": "/personas/HR.png" },
+      { "name": "PMO", "avatar": "/personas/PMO.png" }
     ],
     "features": [
-      { "name": "Agents", "logo": "/product-icons/agents.png" },
-      { "name": "Vibe", "logo": "/product-icons/vibe.png" },
-      { "name": "Workflows", "logo": "/product-icons/workflows.png" },
-      { "name": "Sidekick", "logo": "/product-icons/sidekick.png" },
-      { "name": "Notetaker", "logo": "/product-icons/notetaker.png" },
-      { "name": "AI blocks", "logo": "/product-icons/ai-blocks.png" },
-      { "name": "Platform", "logo": "/product-icons/platform.png" }
+      { "name": "Agents", "logo": "/product-icons/Agents.png" },
+      { "name": "Vibe", "logo": "/product-icons/Vibe.png" },
+      { "name": "Workflows", "logo": "/product-icons/Workflows.png" },
+      { "name": "Sidekick", "logo": "/product-icons/Sidekick.png" },
+      { "name": "Notetaker", "logo": "/product-icons/Notetaker.png" },
+      { "name": "AI blocks", "logo": "/product-icons/AI%20block.png" },
+      { "name": "Platform", "logo": "" }
     ],
     "outputs": {
       "top": [
