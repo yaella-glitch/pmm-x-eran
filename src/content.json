@@ -1,0 +1,227 @@
+{
+  "brand": {
+    "name": "monday.com",
+    "logo": "https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/monday-logo-x2.png",
+    "colors": {
+      "primary": "#6161ff",
+      "primary_dark": "#452aea",
+      "primary_light": "#97aeff",
+      "success": "#00ca72",
+      "teal": "#00d2d2",
+      "tint": "#f0f3ff",
+      "text_dark": "#323338",
+      "text_medium": "#676879",
+      "border": "#dcdfec"
+    }
+  },
+  "section1_hero": {
+    "label": "Today's goal",
+    "title_line_1": "PMMs",
+    "title_line_2": "role & Impact",
+    "date": "July 2026",
+    "agenda": [
+      { "text": "Intro to PMM role", "duration": "10 min" },
+      { "text": "Verticals zoom-in", "duration": "20 min" }
+    ]
+  },
+  "section3_what_is_pmm": {
+    "label": "What is our goal?",
+    "title": "Product capabilities → Customer value",
+    "personas": [
+      { "name": "Marketing", "avatar": "" },
+      { "name": "IT", "avatar": "" },
+      { "name": "HR", "avatar": "" },
+      { "name": "PMO", "avatar": "" }
+    ],
+    "features": [
+      { "name": "Agents", "logo": "/product-icons/agents.png" },
+      { "name": "Vibe", "logo": "/product-icons/vibe.png" },
+      { "name": "Workflows", "logo": "/product-icons/workflows.png" },
+      { "name": "Sidekick", "logo": "/product-icons/sidekick.png" },
+      { "name": "Notetaker", "logo": "/product-icons/notetaker.png" },
+      { "name": "AI blocks", "logo": "/product-icons/ai-blocks.png" },
+      { "name": "Platform", "logo": "/product-icons/platform.png" }
+    ],
+    "outputs": {
+      "top": [
+        { "name": "Homepage", "owned": true }
+      ],
+      "middle": [
+        { "name": "Gartner & G2", "owned": true },
+        { "name": "Regional events", "owned": false },
+        { "name": "Sales collateral", "owned": true }
+      ],
+      "bottom": [
+        { "name": "Cross/upsell campaigns", "owned": false },
+        { "name": "Lifecycle", "owned": false }
+      ]
+    }
+  },
+  "section4_deliverables": {
+    "label": "A glimpse to our deliverables",
+    "title": "",
+    "categories": [
+      {
+        "name": "Capture AI Demand",
+        "items": [
+          {
+            "name": "Customer Zero",
+            "description": "",
+            "images": [],
+            "impact": ""
+          },
+          {
+            "name": "Template center",
+            "description": "",
+            "images": [],
+            "impact": ""
+          },
+          {
+            "name": "Departments offering",
+            "description": "",
+            "images": [],
+            "impact": "+XX% CR in agentic funnel"
+          },
+          {
+            "name": "Cross-sell campaign",
+            "description": "",
+            "images": [],
+            "impact": "424 opportunities (61% win rate), $2.5M pipeline, $473K won ARR"
+          }
+        ]
+      },
+      {
+        "name": "Enable Sales & CS",
+        "items": [
+          {
+            "name": "Why monday.com",
+            "description": "",
+            "images": [],
+            "impact": "#1 used asset by sellers, 40% of seller pitch AI"
+          },
+          {
+            "name": "Battle cards",
+            "description": "",
+            "images": [],
+            "impact": "200 competitive deals in the last 3 weeks, $9.5M pipeline"
+          }
+        ]
+      },
+      {
+        "name": "Positioning",
+        "items": [
+          {
+            "name": "Elevate",
+            "description": "",
+            "images": [],
+            "impact": "4.7 sessions rating · Owned 7 sessions"
+          },
+          {
+            "name": "Gartner & review sites",
+            "description": "",
+            "images": [],
+            "impact": "137 opportunities mentioned Gartner · $7M pipeline in 2025 mentioned Gartner"
+          },
+          {
+            "name": "Feature releases",
+            "description": "",
+            "images": [],
+            "impact": ""
+          }
+        ]
+      },
+      {
+        "name": "AI acquisition",
+        "items": [
+          {
+            "name": "Briefs at scale",
+            "description": "",
+            "images": [],
+            "impact": ""
+          }
+        ]
+      }
+    ]
+  },
+  "section5_verticals_divider": {
+    "label": "Section 2",
+    "title": "Verticals zoom-in"
+  },
+  "section6_battles": {
+    "label": "Verticals zoom-in",
+    "title": "Verticals & new GTM",
+    "battle": {
+      "id": "verticals",
+      "name": "Verticals & new GTM",
+      "summary": "Departments, end-to-end offering",
+      "subviews": [
+        {
+          "name": "Baseline",
+          "kind": "baseline",
+          "goal": "Lift vertical pipeline by 30% by Q4 — concentrated bets on IT, Project, Marketing.",
+          "headers": ["Department", "Leads", "CW %", "ARR", "Touch / No-touch"],
+          "rows": [
+            ["IT", "—", "—", "—", "— / —"],
+            ["Project", "—", "—", "—", "— / —"],
+            ["Marketing", "—", "—", "—", "— / —"]
+          ]
+        },
+        {
+          "name": "Offering",
+          "kind": "offering",
+          "persona": {
+            "name": "Marketing",
+            "subtitle": "Marketing operations & campaign teams",
+            "needs": [
+              "Faster campaign throughput",
+              "One source of truth across channels",
+              "AI that handles the repetitive work"
+            ],
+            "value_prop": "Your AI-native marketing stack — agents that do the work, apps that show the truth."
+          },
+          "products": [
+            {
+              "category": "AI Agents",
+              "name": "Performance Marketing Agent",
+              "tagline": "Campaign optimization",
+              "body": "Plans, launches, and optimizes campaigns across channels."
+            },
+            {
+              "category": "AI Agents",
+              "name": "Content Agent",
+              "tagline": "Content generation",
+              "body": "Generates and adapts content for different channels and audiences."
+            },
+            {
+              "category": "AI Agents",
+              "name": "Nova",
+              "tagline": "Campaign Scout",
+              "body": "Scans live performance data and surfaces what to do next."
+            },
+            {
+              "category": "Vibe Apps",
+              "name": "Sales Pipeline",
+              "tagline": "Track deals end-to-end",
+              "body": "Day-one ready board your team would use without setup."
+            }
+          ]
+        },
+        {
+          "name": "Journey",
+          "kind": "journey",
+          "stages": [
+            { "name": "First touch", "detail": "Ad · SEO", "asset": "" },
+            { "name": "Trial", "detail": "Self-serve onboarding", "asset": "" },
+            { "name": "Activation", "detail": "First workflow live", "asset": "" },
+            { "name": "Sales conversation", "detail": "AE outreach", "asset": "" },
+            { "name": "Closed-won", "detail": "ARR booked", "asset": "" }
+          ]
+        }
+      ]
+    }
+  },
+  "section7_closing": {
+    "title": "Thank you",
+    "subtitle": "we are your partners for the change"
+  }
+}

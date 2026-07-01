@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+:root[data-theme="light"] {
+  --color-text: #0f172a;
+  --color-text-muted: #312e81;
+  --color-text-soft: #4338ca;
+  --color-bg: #fafafa;
+  --color-bg-deep: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #f8fafc;
+  --color-border: rgba(99, 102, 241, 0.10);
+  --color-border-strong: rgba(99, 102, 241, 0.25);
+
+  --grid-line: rgba(99, 102, 241, 0.05);
+  --glow-color: rgba(99, 102, 241, 0.10);
+  --frame-tint: rgba(99, 102, 241, 0.04);
+
+  --c-violet: #a58aff;
+  --c-indigo: #6366f1;
+  --c-monday: #6161ff;
+  --c-sky: #38bdf8;
+  --c-emerald: #34d399;
+  --c-amber: #fbbf24;
+  --c-pink: #fb7185;
+
+  --grad-accent: linear-gradient(135deg, #a58aff, #6366f1 30%, #38bdf8 70%, #a58aff);
+}
+
+:root[data-theme="dark"] {
+  --color-text: #f8fafc;
+  --color-text-muted: #e0e7ff;
+  --color-text-soft: #a5b4fc;
+  --color-bg: #06060c;
+  --color-bg-deep: #02020a;
+  --color-surface: #0e0e18;
+  --color-surface-2: #14141f;
+  --color-border: rgba(165, 180, 252, 0.10);
+  --color-border-strong: rgba(165, 180, 252, 0.22);
+
+  --grid-line: rgba(165, 180, 252, 0.025);
+  --glow-color: rgba(99, 102, 241, 0.28);
+  --frame-tint: rgba(99, 102, 241, 0.08);
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+#root {
+  background:
+    radial-gradient(ellipse 80% 60% at 12% -5%, var(--glow-color), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(165, 138, 255, 0.10), transparent 65%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    var(--color-bg);
+  background-size: auto, auto, 56px 56px, 56px 56px, auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 7rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.font-serif-italic {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+}
+
+.gradient-text {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.frame {
+  border: 0.5px solid var(--color-border);
+  border-radius: 22px;
+  background: var(--color-surface);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.frame-strong {
+  border: 0.5px solid var(--color-border-strong);
+  border-radius: 22px;
+  background: var(--color-surface);
+}
+
+.gradient-frame {
+  position: relative;
+  border-radius: 22px;
+  background: var(--color-surface);
+  isolation: isolate;
+}
+.gradient-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(165,138,255,0.7), rgba(99,102,241,0.45) 30%, rgba(56,189,248,0.45) 70%, rgba(165,138,255,0.7));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+}
+
+:root[data-theme="dark"] .deep-shadow {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(99, 102, 241, 0.12);
+}
+:root[data-theme="light"] .deep-shadow {
+  box-shadow: 0 30px 80px rgba(99, 102, 241, 0.15), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.brand-accent {
+  background: linear-gradient(135deg, #a58aff, #6366f1 50%, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--color-text);
+  font-family: inherit;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+  border-color: var(--c-indigo);
+  box-shadow: 0 0 24px var(--glow-color);
+}
+
+/* SVG colors that adapt to theme */
+.svg-text { fill: var(--color-text); }
+.svg-text-muted { fill: var(--color-text-muted); }
+.svg-text-soft { fill: var(--color-text-soft); }
+.svg-surface { fill: var(--color-surface); }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Aurora/atmosphere for dark mode hero "wow" */
+:root[data-theme="dark"] .aurora-bg {
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(165, 138, 255, 0.18), transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(56, 189, 248, 0.12), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 60% 80%, rgba(99, 102, 241, 0.18), transparent 60%);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: aurora 18s ease-in-out infinite;
+}
+
+:root[data-theme="light"] .aurora-bg {
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(165, 138, 255, 0.07), transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(56, 189, 248, 0.05), transparent 60%);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+@keyframes aurora {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3%, -2%) scale(1.05); }
+  66% { transform: translate(-2%, 2%) scale(0.98); }
+}
