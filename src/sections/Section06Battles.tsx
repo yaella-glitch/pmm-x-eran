@@ -22,8 +22,8 @@ export default function Section06Battles() {
         <div
           className="gradient-frame deep-shadow"
           style={{
-            marginTop: "2rem",
-            padding: "2.5rem 3rem",
+            marginTop: "1.5rem",
+            padding: "1.5rem 2rem",
             background: "var(--color-surface)",
           }}
         >
@@ -32,7 +32,7 @@ export default function Section06Battles() {
             style={{
               display: "flex",
               gap: "0.5rem",
-              marginBottom: "1.75rem",
+              marginBottom: "1.25rem",
               borderBottom: "0.5px solid var(--color-border)",
             }}
           >

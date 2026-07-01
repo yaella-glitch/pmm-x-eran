@@ -44,7 +44,8 @@
     ],
     "outputs": {
       "top": [
-        { "name": "Homepage", "owned": true }
+        { "name": "Homepage", "owned": true },
+        { "name": "Acquisition campaigns", "owned": false }
       ],
       "middle": [
         { "name": "Gartner & G2", "owned": true },
@@ -67,13 +68,18 @@
           {
             "name": "Customer Zero",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/capture-ai-demand/Customer Zero.png",
+              "/deliverables/capture-ai-demand/Customer zero 2.png"
+            ],
             "impact": ""
           },
           {
             "name": "Template center",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/capture-ai-demand/Template cetner.png"
+            ],
             "impact": ""
           },
           {
@@ -96,13 +102,17 @@
           {
             "name": "Why monday.com",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/enable-sales-cs/Why monday.gif"
+            ],
             "impact": "#1 used asset by sellers, 40% of seller pitch AI"
           },
           {
             "name": "Battle cards",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/enable-sales-cs/Battle cards.png"
+            ],
             "impact": "200 competitive deals in the last 3 weeks, $9.5M pipeline"
           }
         ]
@@ -113,19 +123,25 @@
           {
             "name": "Elevate",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/positioning/Elevate.jpeg"
+            ],
             "impact": "4.7 sessions rating · Owned 7 sessions"
           },
           {
             "name": "Gartner & review sites",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/positioning/Gartner.png"
+            ],
             "impact": "137 opportunities mentioned Gartner · $7M pipeline in 2025 mentioned Gartner"
           },
           {
             "name": "Feature releases",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/positioning/Feature releases.gif"
+            ],
             "impact": ""
           }
         ]

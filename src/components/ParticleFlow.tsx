@@ -1,4 +1,5 @@
 import { useContent } from "../ContentContext";
+import { assetUrl } from "../lib/assetUrl";
 
 type Output = { name: string; owned: boolean };
 type Persona = { name: string; avatar?: string };
@@ -107,7 +108,7 @@ export default function ParticleFlow() {
                         <circle cx={px} cy={personaY - 4} r={16} />
                       </clipPath>
                       <image
-                        href={p.avatar}
+                        href={assetUrl(p.avatar)}
                         x={px - 16}
                         y={personaY - 20}
                         width={32}
@@ -184,7 +185,7 @@ export default function ParticleFlow() {
               />
               {f.logo ? (
                 <image
-                  href={f.logo}
+                  href={assetUrl(f.logo)}
                   x={FEATURE_LOGO_X - 16}
                   y={fy - 16}
                   width={32}
