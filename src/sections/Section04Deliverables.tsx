@@ -5,7 +5,7 @@ import { assetUrl } from "../lib/assetUrl";
 import SectionLabel from "../components/SectionLabel";
 import SectionNumber from "../components/SectionNumber";
 
-const TOTAL_SECTIONS = 7;
+const TOTAL_SECTIONS = 8;
 
 type Item = {
   name: string;
@@ -31,7 +31,7 @@ export default function Section04Deliverables() {
 
   return (
     <section className="snap-section">
-      <SectionNumber current={4} total={TOTAL_SECTIONS} />
+      <SectionNumber current={5} total={TOTAL_SECTIONS} />
       <div style={{ maxWidth: 1500, margin: "0 auto", width: "100%" }}>
         <SectionLabel>{s.label}</SectionLabel>
 

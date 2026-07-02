@@ -3,7 +3,7 @@ import SectionLabel from "../components/SectionLabel";
 import SectionNumber from "../components/SectionNumber";
 import ParticleFlow from "../components/ParticleFlow";
 
-const TOTAL_SECTIONS = 7;
+const TOTAL_SECTIONS = 8;
 
 export default function Section03WhatIsPMM() {
   const content = useContent();

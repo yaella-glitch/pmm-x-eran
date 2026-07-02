@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useContent } from "../ContentContext";
 import SectionNumber from "../components/SectionNumber";
 
-const TOTAL_SECTIONS = 7;
+const TOTAL_SECTIONS = 8;
 
 export default function Section07Closing() {
   const content = useContent();
@@ -17,7 +17,7 @@ export default function Section07Closing() {
         justifyContent: "center",
       }}
     >
-      <SectionNumber current={7} total={TOTAL_SECTIONS} />
+      <SectionNumber current={8} total={TOTAL_SECTIONS} />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}

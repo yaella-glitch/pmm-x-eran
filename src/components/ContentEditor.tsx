@@ -335,8 +335,21 @@ function EditorBody({
         </Subgroup>
       </Section>
 
+      {/* GOALS */}
+      <Section title="4. Our goals (transition slide)">
+        <TextField label="Title" value={draft.section_goals?.title || ""} onChange={(v) => update(["section_goals", "title"], v)} />
+        <Subgroup title="Goal boxes (3 shown side by side)">
+          {(draft.section_goals?.goals || []).map((g: any, i: number) => (
+            <NestedCard key={i} title={g.name || `Goal ${i + 1}`} onRemove={() => arrayRemove(["section_goals", "goals"], i)}>
+              <TextField label="Name" value={g.name || ""} onChange={(v) => update(["section_goals", "goals", i, "name"], v)} />
+            </NestedCard>
+          ))}
+          <AddBtn onClick={() => arrayAdd(["section_goals", "goals"], { name: "New goal" })}>+ Add goal</AddBtn>
+        </Subgroup>
+      </Section>
+
       {/* DELIVERABLES */}
-      <Section title="4. A glimpse to our deliverables">
+      <Section title="5. A glimpse to our deliverables">
         <TextField label="Section label" value={draft.section4_deliverables.label} onChange={(v) => update(["section4_deliverables", "label"], v)} />
         <TextField label="Title" value={draft.section4_deliverables.title} onChange={(v) => update(["section4_deliverables", "title"], v)} />
 
@@ -373,12 +386,12 @@ function EditorBody({
       </Section>
 
       {/* VERTICALS DIVIDER */}
-      <Section title="5. Verticals zoom-in (divider slide)">
+      <Section title="6. Verticals zoom-in (divider slide)">
         <TextField label="Title" value={draft.section5_verticals_divider?.title || ""} onChange={(v) => update(["section5_verticals_divider", "title"], v)} />
       </Section>
 
       {/* VERTICALS CONTENT */}
-      <Section title="6. Verticals content">
+      <Section title="7. Verticals content">
         <TextField label="Section label" value={draft.section6_battles.label} onChange={(v) => update(["section6_battles", "label"], v)} />
         <TextField label="Vertical name" value={draft.section6_battles.battle.name} onChange={(v) => update(["section6_battles", "battle", "name"], v)} />
         <TextField label="Summary" value={draft.section6_battles.battle.summary} onChange={(v) => update(["section6_battles", "battle", "summary"], v)} />
@@ -452,7 +465,7 @@ function EditorBody({
       </Section>
 
       {/* CLOSING */}
-      <Section title="7. Closing">
+      <Section title="8. Closing">
         <TextField label="Title" value={draft.section7_closing.title} onChange={(v) => update(["section7_closing", "title"], v)} />
         <TextField label="Subtitle" value={draft.section7_closing.subtitle} onChange={(v) => update(["section7_closing", "subtitle"], v)} />
       </Section>

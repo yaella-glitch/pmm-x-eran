@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useContent } from "../ContentContext";
 import SectionNumber from "../components/SectionNumber";
 
-const TOTAL_SECTIONS = 7;
+const TOTAL_SECTIONS = 8;
 
 export default function SectionVerticalsDivider() {
   const content = useContent();
@@ -17,7 +17,7 @@ export default function SectionVerticalsDivider() {
         justifyContent: "flex-start",
       }}
     >
-      <SectionNumber current={5} total={TOTAL_SECTIONS} />
+      <SectionNumber current={6} total={TOTAL_SECTIONS} />
       <div className="aurora-bg" />
 
       <motion.div

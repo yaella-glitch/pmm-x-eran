@@ -3,7 +3,7 @@ import { useContent } from "../ContentContext";
 import SectionLabel from "../components/SectionLabel";
 import SectionNumber from "../components/SectionNumber";
 
-const TOTAL_SECTIONS = 7;
+const TOTAL_SECTIONS = 8;
 
 export default function Section01Hero() {
   const content = useContent();

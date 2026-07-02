@@ -25,7 +25,7 @@
     ]
   },
   "section3_what_is_pmm": {
-    "label": "What is our goal?",
+    "label": "Our Role",
     "title": "Product capabilities → Customer value",
     "personas": [
       { "name": "Marketing", "avatar": "/personas/Marketing.png" },
@@ -66,6 +66,15 @@
     "gallery": [
       "/example/What we shipped 1.jpeg",
       "/example/What we shipped 2.jpeg"
+    ]
+  },
+  "section_goals": {
+    "label": "Our goals",
+    "title": "our goals",
+    "goals": [
+      { "name": "Capture AI demand" },
+      { "name": "Enable Sales" },
+      { "name": "Positioning as AI leader" }
     ]
   },
   "section4_deliverables": {
