@@ -58,6 +58,13 @@
       ]
     }
   },
+  "section_example": {
+    "label": "Let's take an example",
+    "brief_label": "The brief",
+    "gallery_label": "What we shipped",
+    "brief_image": "",
+    "gallery": []
+  },
   "section4_deliverables": {
     "label": "A glimpse to our deliverables",
     "title": "",

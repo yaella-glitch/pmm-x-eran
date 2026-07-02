@@ -5,7 +5,7 @@ import { assetUrl } from "../lib/assetUrl";
 import SectionLabel from "../components/SectionLabel";
 import SectionNumber from "../components/SectionNumber";
 
-const TOTAL_SECTIONS = 6;
+const TOTAL_SECTIONS = 7;
 
 type Item = {
   name: string;
@@ -31,7 +31,7 @@ export default function Section04Deliverables() {
 
   return (
     <section className="snap-section">
-      <SectionNumber current={3} total={TOTAL_SECTIONS} />
+      <SectionNumber current={4} total={TOTAL_SECTIONS} />
       <div style={{ maxWidth: 1500, margin: "0 auto", width: "100%" }}>
         <SectionLabel>{s.label}</SectionLabel>
 
@@ -478,14 +478,31 @@ function ImageCardStack({
                 position: "absolute",
                 inset: 0,
                 borderRadius: 14,
-                background: `url(${assetUrl(images[imgI])}) top center / cover`,
+                overflow: "hidden",
                 border: "0.5px solid rgba(255,255,255,0.14)",
                 boxShadow: isFront
                   ? "0 20px 50px rgba(0,0,0,0.35)"
                   : "0 12px 32px rgba(0,0,0,0.22)",
                 zIndex: 10 - depth,
+                background: "rgba(0,0,0,0.15)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
-            />
+            >
+              <img
+                src={assetUrl(images[imgI])}
+                alt=""
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                  objectFit: "contain",
+                  display: "block",
+                }}
+              />
+            </motion.div>
           );
         })}
     </div>

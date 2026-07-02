@@ -308,8 +308,35 @@ function EditorBody({
         </Subgroup>
       </Section>
 
+      {/* EXAMPLE */}
+      <Section title="3. Let's take an example">
+        <TextField label="Section label" value={draft.section_example?.label || ""} onChange={(v) => update(["section_example", "label"], v)} />
+        <TextField label="Left column label (brief)" value={draft.section_example?.brief_label || ""} onChange={(v) => update(["section_example", "brief_label"], v)} />
+        <TextField label="Right column label (gallery)" value={draft.section_example?.gallery_label || ""} onChange={(v) => update(["section_example", "gallery_label"], v)} />
+        <TextField
+          label="Brief image path"
+          value={draft.section_example?.brief_image || ""}
+          onChange={(v) => update(["section_example", "brief_image"], v)}
+          hint="Drop image into public/example/ then use /example/yourfile.png"
+        />
+        <Subgroup title="Gallery images (right side)">
+          {(draft.section_example?.gallery || []).map((img: string, i: number) => (
+            <Row key={i}>
+              <TextField
+                label={`Image ${i + 1} path`}
+                value={img}
+                onChange={(v) => update(["section_example", "gallery", i], v)}
+                hint="Path like /example/asset-1.png"
+              />
+              <RemoveBtn onClick={() => arrayRemove(["section_example", "gallery"], i)} />
+            </Row>
+          ))}
+          <AddBtn onClick={() => arrayAdd(["section_example", "gallery"], "")}>+ Add image</AddBtn>
+        </Subgroup>
+      </Section>
+
       {/* DELIVERABLES */}
-      <Section title="3. A glimpse to our deliverables">
+      <Section title="4. A glimpse to our deliverables">
         <TextField label="Section label" value={draft.section4_deliverables.label} onChange={(v) => update(["section4_deliverables", "label"], v)} />
         <TextField label="Title" value={draft.section4_deliverables.title} onChange={(v) => update(["section4_deliverables", "title"], v)} />
 
@@ -346,12 +373,12 @@ function EditorBody({
       </Section>
 
       {/* VERTICALS DIVIDER */}
-      <Section title="4. Verticals zoom-in (divider slide)">
+      <Section title="5. Verticals zoom-in (divider slide)">
         <TextField label="Title" value={draft.section5_verticals_divider?.title || ""} onChange={(v) => update(["section5_verticals_divider", "title"], v)} />
       </Section>
 
       {/* VERTICALS CONTENT */}
-      <Section title="5. Verticals content">
+      <Section title="6. Verticals content">
         <TextField label="Section label" value={draft.section6_battles.label} onChange={(v) => update(["section6_battles", "label"], v)} />
         <TextField label="Vertical name" value={draft.section6_battles.battle.name} onChange={(v) => update(["section6_battles", "battle", "name"], v)} />
         <TextField label="Summary" value={draft.section6_battles.battle.summary} onChange={(v) => update(["section6_battles", "battle", "summary"], v)} />
@@ -393,7 +420,7 @@ function EditorBody({
       </Section>
 
       {/* CLOSING */}
-      <Section title="6. Closing">
+      <Section title="7. Closing">
         <TextField label="Title" value={draft.section7_closing.title} onChange={(v) => update(["section7_closing", "title"], v)} />
         <TextField label="Subtitle" value={draft.section7_closing.subtitle} onChange={(v) => update(["section7_closing", "subtitle"], v)} />
       </Section>
