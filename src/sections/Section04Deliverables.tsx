@@ -53,11 +53,11 @@ export default function Section04Deliverables() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.4fr)",
-            gap: "3rem",
+            gridTemplateColumns: "minmax(0, 0.75fr) minmax(0, 2fr)",
+            gap: "2.5rem",
             alignItems: "stretch",
-            marginTop: s.title ? 0 : "2.5rem",
-            minHeight: 520,
+            marginTop: s.title ? 0 : "2rem",
+            minHeight: 620,
           }}
         >
           {/* LEFT — expandable categories */}
@@ -183,7 +183,7 @@ export default function Section04Deliverables() {
             style={{
               padding: 0,
               overflow: "hidden",
-              minHeight: 520,
+              minHeight: 620,
               display: "flex",
               flexDirection: "column",
             }}
@@ -199,7 +199,7 @@ export default function Section04Deliverables() {
                   display: "flex",
                   flexDirection: "column",
                   height: "100%",
-                  minHeight: 520,
+                  minHeight: 620,
                 }}
               >
                 {activeItem && <ItemPreview item={activeItem} />}
@@ -232,8 +232,8 @@ function ItemPreview({ item }: { item: Item }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "2rem",
-          minHeight: 340,
+          padding: "1.75rem",
+          minHeight: 460,
           position: "relative",
         }}
       >

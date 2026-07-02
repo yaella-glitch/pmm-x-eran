@@ -85,14 +85,18 @@
           {
             "name": "Departments offering",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/capture-ai-demand/Departments offering.png"
+            ],
             "impact": "+XX% CR in agentic funnel"
           },
           {
             "name": "Cross-sell campaign",
             "description": "",
-            "images": [],
-            "impact": "424 opportunities (61% win rate), $2.5M pipeline, $473K won ARR"
+            "images": [
+              "/deliverables/capture-ai-demand/Cross-sell campaign.png"
+            ],
+            "impact": "424 opportunities (61% win rate) · $2.5M pipeline · $473K won ARR"
           }
         ]
       },
@@ -152,7 +156,9 @@
           {
             "name": "Briefs at scale",
             "description": "",
-            "images": [],
+            "images": [
+              "/deliverables/AI acqusition/Briefs at scale.png"
+            ],
             "impact": ""
           }
         ]
