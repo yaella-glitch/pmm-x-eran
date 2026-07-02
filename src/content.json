@@ -223,12 +223,11 @@
         {
           "name": "Journey",
           "kind": "journey",
+          "title": "End-to-end from the first Ad to the Product",
           "stages": [
-            { "name": "First touch", "detail": "Ad · SEO", "asset": "" },
-            { "name": "Trial", "detail": "Self-serve onboarding", "asset": "" },
-            { "name": "Activation", "detail": "First workflow live", "asset": "" },
-            { "name": "Sales conversation", "detail": "AE outreach", "asset": "" },
-            { "name": "Closed-won", "detail": "ARR booked", "asset": "" }
+            { "name": "Marketing Ad", "detail": "", "asset": "" },
+            { "name": "Marketing LP", "detail": "", "asset": "" },
+            { "name": "Marketing SU", "detail": "", "asset": "" }
           ]
         },
         {

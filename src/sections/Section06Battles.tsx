@@ -33,7 +33,7 @@ export default function Section06Battles() {
             style={{
               display: "flex",
               gap: "0.5rem",
-              marginBottom: "1.25rem",
+              marginBottom: "2.75rem",
               borderBottom: "0.5px solid var(--color-border)",
             }}
           >
@@ -74,6 +74,186 @@ export default function Section06Battles() {
         </div>
       </div>
     </section>
+  );
+}
+
+function JourneyView({ subview, accent }: { subview: any; accent: string }) {
+  const [zoomed, setZoomed] = useState<string | null>(null);
+  const stages: Array<{ name: string; detail?: string; asset?: string }> = subview.stages || [];
+  const title = subview.title;
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+      {title && (
+        <p
+          style={{
+            fontSize: "clamp(24px, 2.5vw, 32px)",
+            fontWeight: 400,
+            color: "var(--color-text)",
+            margin: 0,
+            lineHeight: 1.2,
+            letterSpacing: "-0.01em",
+            maxWidth: 1100,
+          }}
+        >
+          {title}
+        </p>
+      )}
+      <div style={{ display: "grid", gridTemplateColumns: `repeat(${stages.length}, minmax(0, 1fr))`, gap: "1rem" }}>
+        {stages.map((stage, i) => {
+          const src = stage.asset ? assetUrl(stage.asset) : "";
+          return (
+            <div key={i} style={{ display: "flex", flexDirection: "column", gap: "0.75rem", position: "relative" }}>
+              <button
+                type="button"
+                onClick={() => src && setZoomed(src)}
+                disabled={!src}
+                style={{
+                  padding: 0,
+                  border: `0.5px solid ${accent}55`,
+                  borderRadius: 12,
+                  background: `linear-gradient(135deg, ${accent}18, ${accent}05)`,
+                  aspectRatio: "4/3",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  cursor: src ? "zoom-in" : "default",
+                  fontFamily: "inherit",
+                }}
+              >
+                {src ? (
+                  <img
+                    src={src}
+                    alt={stage.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "top center",
+                      display: "block",
+                    }}
+                  />
+                ) : (
+                  <span className="font-serif-italic" style={{ fontSize: 11, color: "var(--color-text-soft)" }}>
+                    drop asset here
+                  </span>
+                )}
+              </button>
+              <div>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: 10,
+                    color: accent,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    fontWeight: 600,
+                    marginBottom: "0.25rem",
+                  }}
+                >
+                  Stage {String(i + 1).padStart(2, "0")}
+                </p>
+                <p style={{ margin: 0, fontSize: 16, fontWeight: 500, color: "var(--color-text)", lineHeight: 1.25 }}>
+                  {stage.name}
+                </p>
+                {stage.detail && (
+                  <p style={{ margin: "0.25rem 0 0", fontSize: 12, color: "var(--color-text-muted)" }}>
+                    {stage.detail}
+                  </p>
+                )}
+              </div>
+              {i < stages.length - 1 && (
+                <span
+                  style={{
+                    position: "absolute",
+                    right: "-0.65rem",
+                    top: "25%",
+                    color: accent,
+                    fontSize: 20,
+                    zIndex: 1,
+                  }}
+                >
+                  →
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <Lightbox src={zoomed} onClose={() => setZoomed(null)} />
+    </div>
+  );
+}
+
+function Lightbox({ src, onClose }: { src: string | null; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      {src && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 300,
+            background: "rgba(0,0,0,0.85)",
+            backdropFilter: "blur(6px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "3rem",
+            cursor: "zoom-out",
+          }}
+        >
+          <motion.img
+            initial={{ scale: 0.94 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.94 }}
+            transition={{ duration: 0.25 }}
+            src={src}
+            alt="Zoomed"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "contain",
+              borderRadius: 12,
+              boxShadow: "0 40px 80px rgba(0,0,0,0.6)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            style={{
+              position: "fixed",
+              top: 24,
+              right: 24,
+              width: 44,
+              height: 44,
+              borderRadius: 999,
+              background: "rgba(255,255,255,0.1)",
+              border: "0.5px solid rgba(255,255,255,0.3)",
+              color: "white",
+              fontSize: 22,
+              cursor: "pointer",
+              fontFamily: "inherit",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backdropFilter: "blur(8px)",
+              zIndex: 301,
+            }}
+          >
+            ×
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -262,29 +442,44 @@ function SubviewBody({ subview, accent }: { subview: any; accent: string }) {
                     gap: "0.6rem",
                   }}
                 >
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: 26,
-                      color: "var(--color-text)",
-                      fontWeight: 500,
-                      lineHeight: 1.2,
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {main}
-                  </p>
-                  {tag && (
+                  {tag ? (
+                    <>
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: 44,
+                          color: "var(--color-text)",
+                          fontWeight: 500,
+                          lineHeight: 1.05,
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {tag}
+                      </p>
+                      <p
+                        style={{
+                          margin: 0,
+                          fontSize: 15,
+                          color: "var(--color-text)",
+                          opacity: 0.7,
+                          fontWeight: 400,
+                        }}
+                      >
+                        {main}
+                      </p>
+                    </>
+                  ) : (
                     <p
                       style={{
                         margin: 0,
-                        fontSize: 16,
+                        fontSize: 26,
                         color: "var(--color-text)",
-                        opacity: 0.7,
-                        fontWeight: 400,
+                        fontWeight: 500,
+                        lineHeight: 1.2,
+                        letterSpacing: "-0.01em",
                       }}
                     >
-                      {tag}
+                      {main}
                     </p>
                   )}
                   {k.value && (
@@ -471,68 +666,7 @@ function SubviewBody({ subview, accent }: { subview: any; accent: string }) {
   }
 
   if (subview.kind === "journey") {
-    return (
-      <div style={{ display: "grid", gridTemplateColumns: `repeat(${subview.stages.length}, minmax(0, 1fr))`, gap: "0.75rem" }}>
-        {subview.stages.map((stage: any, i: number) => (
-          <div key={i} style={{ display: "flex", flexDirection: "column", gap: "0.75rem", position: "relative" }}>
-            <div
-              style={{
-                aspectRatio: "4/3",
-                background: stage.asset
-                  ? `url(${stage.asset}) center / cover`
-                  : `linear-gradient(135deg, ${accent}28, ${accent}08)`,
-                borderRadius: 12,
-                border: `0.5px solid ${accent}55`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {!stage.asset && (
-                <span className="font-serif-italic" style={{ fontSize: 11, color: "var(--color-text-soft)" }}>
-                  asset teaser
-                </span>
-              )}
-            </div>
-            <div>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 10,
-                  color: accent,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
-                  marginBottom: "0.25rem",
-                }}
-              >
-                Stage {String(i + 1).padStart(2, "0")}
-              </p>
-              <p style={{ margin: 0, fontSize: 14, fontWeight: 500, color: "var(--color-text)", lineHeight: 1.25 }}>
-                {stage.name}
-              </p>
-              <p style={{ margin: "0.25rem 0 0", fontSize: 12, color: "var(--color-text-muted)" }}>
-                {stage.detail}
-              </p>
-            </div>
-            {i < subview.stages.length - 1 && (
-              <span
-                style={{
-                  position: "absolute",
-                  right: "-0.6rem",
-                  top: "30%",
-                  color: accent,
-                  fontSize: 18,
-                  zIndex: 1,
-                }}
-              >
-                →
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-    );
+    return <JourneyView subview={subview} accent={accent} />;
   }
 
   return (
