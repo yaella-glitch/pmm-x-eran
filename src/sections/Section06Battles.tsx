@@ -77,6 +77,105 @@ export default function Section06Battles() {
   );
 }
 
+function BaselineSplit({ subview, accent }: { subview: any; accent: string }) {
+  const [which, setWhich] = useState<"no_touch" | "touch">("no_touch");
+  const tables = subview.tables || {};
+  const t = tables[which] || {};
+  const headers: string[] = t.headers || [];
+  const rows: string[][] = t.rows || [];
+  const totalArrIdx = headers.findIndex((h) => /total arr/i.test(h));
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <div
+        style={{
+          display: "inline-flex",
+          gap: "0.35rem",
+          padding: "0.3rem",
+          background: "var(--color-surface-2)",
+          borderRadius: 999,
+          border: "0.5px solid var(--color-border)",
+          alignSelf: "flex-start",
+        }}
+      >
+        {(["no_touch", "touch"] as const).map((key) => {
+          const active = which === key;
+          return (
+            <button
+              key={key}
+              onClick={() => setWhich(key)}
+              style={{
+                background: active ? accent : "transparent",
+                color: active ? "white" : "var(--color-text-muted)",
+                border: "none",
+                borderRadius: 999,
+                padding: "0.45rem 1.1rem",
+                fontSize: 13,
+                fontFamily: "inherit",
+                fontWeight: 500,
+                cursor: "pointer",
+                transition: "all 0.2s",
+              }}
+            >
+              {tables[key]?.label || key.replace("_", " ")}
+            </button>
+          );
+        })}
+      </div>
+
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+        <thead>
+          <tr style={{ borderBottom: "0.5px solid var(--color-border-strong)" }}>
+            {headers.map((h, i) => (
+              <th
+                key={i}
+                style={{
+                  textAlign: i === 0 ? "left" : "right",
+                  padding: "0.75rem 1rem",
+                  fontWeight: 500,
+                  color: i === totalArrIdx ? "var(--c-amber)" : accent,
+                  fontSize: 11,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em",
+                }}
+              >
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i} style={{ borderBottom: "0.5px solid var(--color-border)" }}>
+              {row.map((cell, j) => {
+                const isTotal = j === totalArrIdx;
+                return (
+                  <td
+                    key={j}
+                    style={{
+                      padding: "0.85rem 1rem",
+                      textAlign: j === 0 ? "left" : "right",
+                      fontWeight: j === 0 ? 500 : isTotal ? 600 : 400,
+                      color: isTotal
+                        ? "var(--c-amber)"
+                        : j === 0
+                        ? "var(--color-text)"
+                        : "var(--color-text-muted)",
+                      fontSize: j === 0 ? 15 : isTotal ? 16 : 14,
+                    }}
+                  >
+                    {cell}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function PersonaBlock({ title, items, accent }: { title: string; items: string[]; accent: string }) {
   if (!items || items.length === 0) return null;
   return (
@@ -119,6 +218,12 @@ function SubviewBody({ subview, accent }: { subview: any; accent: string }) {
 
   if (subview.kind === "goal") {
     const kpis: Array<{ label: string; value: string }> = subview.kpis || [];
+    // Parse label: split off trailing "- Touch" or "- No touch"
+    const parseKpi = (raw: string) => {
+      const m = raw.match(/^(.*?)\s*-\s*(Touch|No touch)\s*$/i);
+      if (m) return { main: m[1].trim(), tag: m[2].trim() };
+      return { main: raw, tag: "" };
+    };
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
         <p
@@ -140,52 +245,73 @@ function SubviewBody({ subview, accent }: { subview: any; accent: string }) {
               display: "grid",
               gridTemplateColumns: `repeat(${Math.min(kpis.length, 4)}, minmax(0, 1fr))`,
               gap: "1.25rem",
-              marginTop: "1rem",
+              marginTop: "0.5rem",
             }}
           >
-            {kpis.map((k, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: "1.5rem 1.75rem",
-                  borderRadius: 16,
-                  background: `linear-gradient(135deg, ${accent}22, ${accent}0a)`,
-                  border: `0.5px solid ${accent}55`,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.6rem",
-                }}
-              >
-                <p
+            {kpis.map((k, i) => {
+              const { main, tag } = parseKpi(k.label || "");
+              return (
+                <div
+                  key={i}
                   style={{
-                    margin: 0,
-                    fontSize: 11,
-                    color: "var(--c-amber)",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    fontWeight: 700,
+                    padding: "1.75rem 2rem",
+                    borderRadius: 16,
+                    background: `linear-gradient(135deg, ${accent}22, ${accent}08)`,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.6rem",
                   }}
                 >
-                  {k.label}
-                </p>
-                <p
-                  className="brand-accent"
-                  style={{
-                    margin: 0,
-                    fontSize: 42,
-                    fontWeight: 600,
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1,
-                  }}
-                >
-                  {k.value || "—"}
-                </p>
-              </div>
-            ))}
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: 26,
+                      color: "var(--color-text)",
+                      fontWeight: 500,
+                      lineHeight: 1.2,
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {main}
+                  </p>
+                  {tag && (
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: 16,
+                        color: "var(--color-text)",
+                        opacity: 0.7,
+                        fontWeight: 400,
+                      }}
+                    >
+                      {tag}
+                    </p>
+                  )}
+                  {k.value && (
+                    <p
+                      className="brand-accent"
+                      style={{
+                        margin: "0.4rem 0 0",
+                        fontSize: 32,
+                        fontWeight: 600,
+                        letterSpacing: "-0.02em",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {k.value}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
     );
+  }
+
+  if (subview.kind === "baseline_split") {
+    return <BaselineSplit subview={subview} accent={accent} />;
   }
 
   if (subview.kind === "baseline") {

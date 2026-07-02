@@ -88,7 +88,7 @@
             "name": "Template center",
             "description": "",
             "images": [
-              "/deliverables/capture-ai-demand/Template cetner.png"
+              "/deliverables/capture-ai-demand/Template center.gif"
             ],
             "impact": ""
           },
@@ -233,16 +233,31 @@
         },
         {
           "name": "Baseline",
-          "kind": "baseline",
-          "goal": "Lift vertical pipeline by 30% by Q4 — concentrated bets on IT, Project, Marketing.",
-          "headers": ["Department", "Leads", "CW %", "ARR", "Touch / No-touch"],
-          "rows": [
-            ["Marketing", "—", "—", "—", "— / —"],
-            ["HR", "—", "—", "—", "— / —"],
-            ["IT", "—", "—", "—", "— / —"],
-            ["PMO & Project", "—", "—", "—", "— / —"],
-            ["Enterprise", "—", "—", "—", "— / —"]
-          ]
+          "kind": "baseline_split",
+          "tables": {
+            "no_touch": {
+              "label": "No touch",
+              "headers": ["Vertical", "Soft SU", "Hard SU", "Agents created", "Agents running", "Total ARR"],
+              "rows": [
+                ["Marketing", "—", "—", "—", "—", "—"],
+                ["IT", "—", "—", "—", "—", "—"],
+                ["HR", "—", "—", "—", "—", "—"],
+                ["PMO & Projects", "—", "—", "—", "—", "—"],
+                ["Enterprise", "—", "—", "—", "—", "—"]
+              ]
+            },
+            "touch": {
+              "label": "Touch",
+              "headers": ["Vertical", "Leads", "Opportunities", "Closed Won", "Total ARR"],
+              "rows": [
+                ["Marketing", "—", "—", "—", "—"],
+                ["IT", "—", "—", "—", "—"],
+                ["HR", "—", "—", "—", "—"],
+                ["PMO & Projects", "—", "—", "—", "—"],
+                ["Enterprise", "—", "—", "—", "—"]
+              ]
+            }
+          }
         }
       ]
     }
