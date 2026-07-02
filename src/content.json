@@ -234,7 +234,7 @@
           "kind": "journey",
           "title": "End-to-end from the first Ad to the Product",
           "stages": [
-            { "name": "Marketing Ad", "detail": "", "asset": "" },
+            { "name": "Marketing Ad", "detail": "", "asset": "/Verticals Zoom in/Joruney/Marketing ad.jpeg" },
             { "name": "Marketing LP", "detail": "", "asset": "/Verticals Zoom in/Joruney/Marketing LP.png" },
             { "name": "Marketing SU", "detail": "", "asset": "/Verticals Zoom in/Joruney/Marketing sign-up.jpeg" }
           ]
