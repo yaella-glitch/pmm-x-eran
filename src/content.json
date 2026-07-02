@@ -62,8 +62,11 @@
     "label": "Let's take an example",
     "brief_label": "The brief",
     "gallery_label": "What we shipped",
-    "brief_image": "",
-    "gallery": []
+    "brief_image": "/example/Brief.png",
+    "gallery": [
+      "/example/What we shipped 1.jpeg",
+      "/example/What we shipped 2.jpeg"
+    ]
   },
   "section4_deliverables": {
     "label": "A glimpse to our deliverables",
@@ -185,6 +188,15 @@
       "summary": "Departments, end-to-end offering",
       "subviews": [
         {
+          "name": "Goal",
+          "kind": "goal",
+          "statement": "End-to-end experience for 3-5 main departments both for touch and no touch",
+          "kpis": [
+            { "label": "Segment AI ARR - Touch", "value": "" },
+            { "label": "Segment AI ARR - No touch", "value": "" }
+          ]
+        },
+        {
           "name": "Offering",
           "kind": "offering",
           "persona": {
@@ -225,9 +237,11 @@
           "goal": "Lift vertical pipeline by 30% by Q4 — concentrated bets on IT, Project, Marketing.",
           "headers": ["Department", "Leads", "CW %", "ARR", "Touch / No-touch"],
           "rows": [
+            ["Marketing", "—", "—", "—", "— / —"],
+            ["HR", "—", "—", "—", "— / —"],
             ["IT", "—", "—", "—", "— / —"],
-            ["Project", "—", "—", "—", "— / —"],
-            ["Marketing", "—", "—", "—", "— / —"]
+            ["PMO & Project", "—", "—", "—", "— / —"],
+            ["Enterprise", "—", "—", "—", "— / —"]
           ]
         }
       ]

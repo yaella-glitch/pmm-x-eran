@@ -117,6 +117,77 @@ function PersonaBlock({ title, items, accent }: { title: string; items: string[]
 function SubviewBody({ subview, accent }: { subview: any; accent: string }) {
   if (!subview) return null;
 
+  if (subview.kind === "goal") {
+    const kpis: Array<{ label: string; value: string }> = subview.kpis || [];
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+        <p
+          style={{
+            fontSize: "clamp(28px, 3.2vw, 42px)",
+            fontWeight: 400,
+            color: "var(--color-text)",
+            margin: 0,
+            lineHeight: 1.15,
+            letterSpacing: "-0.015em",
+            maxWidth: 1100,
+          }}
+        >
+          {subview.statement}
+        </p>
+        {kpis.length > 0 && (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${Math.min(kpis.length, 4)}, minmax(0, 1fr))`,
+              gap: "1.25rem",
+              marginTop: "1rem",
+            }}
+          >
+            {kpis.map((k, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "1.5rem 1.75rem",
+                  borderRadius: 16,
+                  background: `linear-gradient(135deg, ${accent}22, ${accent}0a)`,
+                  border: `0.5px solid ${accent}55`,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.6rem",
+                }}
+              >
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: 11,
+                    color: "var(--c-amber)",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    fontWeight: 700,
+                  }}
+                >
+                  {k.label}
+                </p>
+                <p
+                  className="brand-accent"
+                  style={{
+                    margin: 0,
+                    fontSize: 42,
+                    fontWeight: 600,
+                    letterSpacing: "-0.02em",
+                    lineHeight: 1,
+                  }}
+                >
+                  {k.value || "—"}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   if (subview.kind === "baseline") {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>

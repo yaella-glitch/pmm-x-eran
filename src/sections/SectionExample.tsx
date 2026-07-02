@@ -25,11 +25,11 @@ export default function SectionExample() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 60px 1fr",
+            gridTemplateColumns: "1fr 48px 1fr",
             gap: "1rem",
-            marginTop: "3rem",
+            marginTop: "2rem",
             alignItems: "stretch",
-            minHeight: 560,
+            maxHeight: "calc(100vh - 14rem)",
           }}
         >
           {/* LEFT — brief image */}
@@ -51,15 +51,15 @@ export default function SectionExample() {
               style={{
                 background:
                   "linear-gradient(180deg, rgba(165,138,255,0.14), rgba(99,102,241,0.10) 50%, rgba(56,189,248,0.10))",
-                padding: "1.25rem",
+                padding: "0.85rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 flex: 1,
-                minHeight: 500,
-                aspectRatio: "4 / 5",
+                minHeight: 0,
                 width: "100%",
                 boxSizing: "border-box",
+                overflow: "hidden",
               }}
             >
               {brief ? (
@@ -132,15 +132,15 @@ export default function SectionExample() {
               style={{
                 background:
                   "linear-gradient(180deg, rgba(56,189,248,0.14), rgba(99,102,241,0.10) 50%, rgba(165,138,255,0.14))",
-                padding: "1.25rem",
+                padding: "0.85rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 flex: 1,
-                minHeight: 500,
-                aspectRatio: "4 / 5",
+                minHeight: 0,
                 width: "100%",
                 boxSizing: "border-box",
+                overflow: "hidden",
                 position: "relative",
               }}
             >

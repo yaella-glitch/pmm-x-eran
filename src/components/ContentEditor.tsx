@@ -387,6 +387,38 @@ function EditorBody({
           {draft.section6_battles.battle.subviews.map((sv: any, j: number) => (
             <NestedCard key={j} title={`Tab: ${sv.name}`} onRemove={() => arrayRemove(["section6_battles", "battle", "subviews"], j)}>
               <TextField label="Tab name" value={sv.name} onChange={(v) => update(["section6_battles", "battle", "subviews", j, "name"], v)} />
+              {sv.kind === "goal" && (
+                <>
+                  <TextAreaField
+                    label="Goal statement"
+                    value={sv.statement || ""}
+                    onChange={(v) => update(["section6_battles", "battle", "subviews", j, "statement"], v)}
+                  />
+                  <Subgroup title="KPI boxes">
+                    {(sv.kpis || []).map((k: any, ki: number) => (
+                      <NestedCard
+                        key={ki}
+                        title={k.label || `KPI ${ki + 1}`}
+                        onRemove={() => arrayRemove(["section6_battles", "battle", "subviews", j, "kpis"], ki)}
+                      >
+                        <TextField
+                          label="Label"
+                          value={k.label || ""}
+                          onChange={(v) => update(["section6_battles", "battle", "subviews", j, "kpis", ki, "label"], v)}
+                        />
+                        <TextField
+                          label="Value (e.g. $2.5M, +30%)"
+                          value={k.value || ""}
+                          onChange={(v) => update(["section6_battles", "battle", "subviews", j, "kpis", ki, "value"], v)}
+                        />
+                      </NestedCard>
+                    ))}
+                    <AddBtn onClick={() => arrayAdd(["section6_battles", "battle", "subviews", j, "kpis"], { label: "New KPI", value: "" })}>
+                      + Add KPI
+                    </AddBtn>
+                  </Subgroup>
+                </>
+              )}
               {sv.kind === "baseline" && (
                 <BaselineEditor
                   subview={sv}
