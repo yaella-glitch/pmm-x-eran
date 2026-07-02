@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useContent } from "../ContentContext";
+import SectionLabel from "../components/SectionLabel";
 import SectionNumber from "../components/SectionNumber";
 
 const TOTAL_SECTIONS = 8;
@@ -16,7 +17,6 @@ export default function SectionGoals() {
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
       }}
     >
       <SectionNumber current={4} total={TOTAL_SECTIONS} />
@@ -31,25 +31,10 @@ export default function SectionGoals() {
           zIndex: 1,
           display: "flex",
           flexDirection: "column",
-          gap: "3.5rem",
+          gap: "3rem",
         }}
       >
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="font-serif-italic"
-          style={{
-            fontSize: "clamp(48px, 7vw, 108px)",
-            color: "var(--color-text)",
-            margin: 0,
-            fontWeight: 400,
-            lineHeight: 1,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {`--> ${s.title || "our goals"}`}
-        </motion.p>
+        <SectionLabel>{s.title || "our goals"}</SectionLabel>
 
         <div
           style={{
