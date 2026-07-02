@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContent } from "../ContentContext";
+import { assetUrl } from "../lib/assetUrl";
 import SectionLabel from "../components/SectionLabel";
 import SectionNumber from "../components/SectionNumber";
 
@@ -73,6 +74,43 @@ export default function Section06Battles() {
         </div>
       </div>
     </section>
+  );
+}
+
+function PersonaBlock({ title, items, accent }: { title: string; items: string[]; accent: string }) {
+  if (!items || items.length === 0) return null;
+  return (
+    <div>
+      <p
+        style={{
+          margin: 0,
+          fontSize: 10,
+          color: accent,
+          marginBottom: "0.4rem",
+          letterSpacing: "0.09em",
+          textTransform: "uppercase",
+          fontWeight: 700,
+        }}
+      >
+        {title}
+      </p>
+      <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
+        {items.map((n, i) => (
+          <li
+            key={i}
+            style={{
+              fontSize: 11.5,
+              color: "var(--color-text)",
+              paddingLeft: "0.6rem",
+              borderLeft: `2px solid ${accent}`,
+              lineHeight: 1.4,
+            }}
+          >
+            {n}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -153,132 +191,83 @@ function SubviewBody({ subview, accent }: { subview: any; accent: string }) {
 
   if (subview.kind === "offering") {
     const p = subview.persona;
-    const grouped: Record<string, any[]> = {};
-    (subview.products as any[]).forEach((pr) => {
-      grouped[pr.category] = grouped[pr.category] || [];
-      grouped[pr.category].push(pr);
-    });
+    const bullets: string[] = p.offering_bullets || [];
+    const outcomes: string[] = p.outcomes || [];
+    const stackImage = subview.stack_image;
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 0.85fr) minmax(0, 2.4fr)", gap: "1rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 1.4fr)", gap: "1.25rem", alignItems: "stretch" }}>
+        {/* LEFT — persona card with 4 spaced sections */}
         <div
           style={{
-            padding: "0.9rem 1rem",
-            borderRadius: 12,
+            padding: "1.1rem 1.25rem",
+            borderRadius: 14,
             background: `linear-gradient(160deg, ${accent}1f, ${accent}0a 70%)`,
             border: `0.5px solid ${accent}50`,
             display: "flex",
             flexDirection: "column",
-            gap: "0.6rem",
+            gap: "1rem",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "0.55rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
             <div
               style={{
-                width: 30,
-                height: 30,
-                borderRadius: 8,
+                width: 34,
+                height: 34,
+                borderRadius: 9,
                 background: `linear-gradient(135deg, ${accent}, ${accent}66)`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 color: "white",
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 flexShrink: 0,
               }}
             >
               {p.name.charAt(0)}
             </div>
-            <h4 style={{ margin: 0, fontSize: 15, fontWeight: 500, color: "var(--color-text)" }}>
+            <h4 style={{ margin: 0, fontSize: 17, fontWeight: 500, color: "var(--color-text)" }}>
               {p.name}
             </h4>
           </div>
-          <p style={{ margin: 0, fontSize: 11, color: "var(--color-text-muted)", lineHeight: 1.35 }}>
+
+          <p
+            style={{
+              margin: 0,
+              fontSize: 12,
+              color: "var(--color-text)",
+              lineHeight: 1.45,
+              fontWeight: 500,
+            }}
+          >
             {p.subtitle}
           </p>
-          <div>
-            <p style={{ margin: 0, fontSize: 9, color: accent, marginBottom: "0.25rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 600 }}>Needs</p>
-            <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-              {p.needs.map((n: string, i: number) => (
-                <li
-                  key={i}
-                  style={{
-                    fontSize: 11,
-                    color: "var(--color-text)",
-                    paddingLeft: "0.5rem",
-                    borderLeft: `2px solid ${accent}`,
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {n}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p style={{ margin: 0, fontSize: 9, color: accent, marginBottom: "0.25rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 600 }}>Value prop</p>
-            <p style={{ margin: 0, fontSize: 12, color: "var(--color-text)", lineHeight: 1.35, fontWeight: 500 }}>
-              {p.value_prop}
-            </p>
-          </div>
+
+          <PersonaBlock title="Needs" items={p.needs || []} accent={accent} />
+          <PersonaBlock title="Our offering" items={bullets} accent={accent} />
+          <PersonaBlock title="Business outcomes" items={outcomes} accent={accent} />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
-          {Object.entries(grouped).map(([category, prods]) => (
-            <div key={category}>
-              <p
-                style={{
-                  margin: 0,
-                  marginBottom: "0.35rem",
-                  fontSize: 9,
-                  color: "var(--color-text-soft)",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
-                }}
-              >
-                {category}
-              </p>
-              <div style={{ display: "grid", gridTemplateColumns: `repeat(${prods.length}, minmax(0, 1fr))`, gap: "0.5rem" }}>
-                {prods.map((pr: any, i: number) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: "0.55rem 0.65rem",
-                      borderRadius: 10,
-                      background: "var(--color-surface-2)",
-                      border: "0.5px solid var(--color-border)",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "0.3rem",
-                    }}
-                  >
-                    <div
-                      style={{
-                        aspectRatio: "2/1",
-                        background: `linear-gradient(135deg, ${accent}30, ${accent}10)`,
-                        borderRadius: 6,
-                      }}
-                    />
-                    <h5
-                      style={{
-                        margin: 0,
-                        fontSize: 12,
-                        fontWeight: 500,
-                        color: "var(--color-text)",
-                        lineHeight: 1.15,
-                      }}
-                    >
-                      {pr.name}
-                    </h5>
-                    <p style={{ margin: 0, fontSize: 10, color: "var(--color-text-muted)", lineHeight: 1.3 }}>
-                      {pr.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* RIGHT — single static image */}
+        <div
+          style={{
+            borderRadius: 14,
+            overflow: "hidden",
+            border: `0.5px solid ${accent}30`,
+            background: stackImage
+              ? `url(${assetUrl(stackImage)}) center / contain no-repeat, var(--color-surface-2)`
+              : `linear-gradient(135deg, ${accent}18, ${accent}05)`,
+            minHeight: 340,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {!stackImage && (
+            <span className="font-serif-italic" style={{ fontSize: 12, color: "var(--color-text-soft)" }}>
+              drop marketing stack image here
+            </span>
+          )}
         </div>
       </div>
     );

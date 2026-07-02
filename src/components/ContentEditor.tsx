@@ -452,29 +452,45 @@ function OfferingEditor({ subview, path, update, arrayAdd, arrayRemove }: any) {
   const p = subview.persona;
   return (
     <>
-      <Subgroup title="Persona">
+      <Subgroup title="Persona (left side card)">
         <TextField label="Name" value={p.name} onChange={(v) => update([...path, "persona", "name"], v)} />
-        <TextField label="Subtitle (who they are)" value={p.subtitle} onChange={(v) => update([...path, "persona", "subtitle"], v)} />
+        <TextAreaField label="Subtitle (short description below the name)" value={p.subtitle} onChange={(v) => update([...path, "persona", "subtitle"], v)} />
+
         <FieldLabel>Needs</FieldLabel>
-        {p.needs.map((n: string, i: number) => (
+        {(p.needs || []).map((n: string, i: number) => (
           <Row key={i}>
             <TextField label="" value={n} onChange={(v) => update([...path, "persona", "needs", i], v)} />
             <RemoveBtn onClick={() => arrayRemove([...path, "persona", "needs"], i)} />
           </Row>
         ))}
         <AddBtn onClick={() => arrayAdd([...path, "persona", "needs"], "New need")}>+ Add need</AddBtn>
-        <TextAreaField label="Value prop" value={p.value_prop} onChange={(v) => update([...path, "persona", "value_prop"], v)} />
-      </Subgroup>
-      <Subgroup title="Products in the offering">
-        {subview.products.map((pr: any, i: number) => (
-          <NestedCard key={i} title={`${pr.category} · ${pr.name}`} onRemove={() => arrayRemove([...path, "products"], i)}>
-            <TextField label="Category" value={pr.category} onChange={(v) => update([...path, "products", i, "category"], v)} />
-            <TextField label="Name" value={pr.name} onChange={(v) => update([...path, "products", i, "name"], v)} />
-            <TextField label="Tagline" value={pr.tagline} onChange={(v) => update([...path, "products", i, "tagline"], v)} />
-            <TextAreaField label="Body text" value={pr.body} onChange={(v) => update([...path, "products", i, "body"], v)} />
-          </NestedCard>
+
+        <FieldLabel>Our offering</FieldLabel>
+        {(p.offering_bullets || []).map((n: string, i: number) => (
+          <Row key={i}>
+            <TextField label="" value={n} onChange={(v) => update([...path, "persona", "offering_bullets", i], v)} />
+            <RemoveBtn onClick={() => arrayRemove([...path, "persona", "offering_bullets"], i)} />
+          </Row>
         ))}
-        <AddBtn onClick={() => arrayAdd([...path, "products"], { category: "AI Agents", name: "New", tagline: "", body: "" })}>+ Add product</AddBtn>
+        <AddBtn onClick={() => arrayAdd([...path, "persona", "offering_bullets"], "New offering bullet")}>+ Add offering bullet</AddBtn>
+
+        <FieldLabel>Business outcomes</FieldLabel>
+        {(p.outcomes || []).map((n: string, i: number) => (
+          <Row key={i}>
+            <TextField label="" value={n} onChange={(v) => update([...path, "persona", "outcomes", i], v)} />
+            <RemoveBtn onClick={() => arrayRemove([...path, "persona", "outcomes"], i)} />
+          </Row>
+        ))}
+        <AddBtn onClick={() => arrayAdd([...path, "persona", "outcomes"], "New outcome")}>+ Add outcome</AddBtn>
+      </Subgroup>
+
+      <Subgroup title="Right-side image">
+        <TextField
+          label="Image path"
+          value={subview.stack_image || ""}
+          onChange={(v) => update([...path, "stack_image"], v)}
+          hint="Drop the file into public/deliverables/ (or any subfolder). Path example: /deliverables/marketing-stack.png"
+        />
       </Subgroup>
     </>
   );

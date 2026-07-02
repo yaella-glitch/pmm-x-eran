@@ -187,40 +187,24 @@
           "kind": "offering",
           "persona": {
             "name": "Marketing",
-            "subtitle": "Marketing operations & campaign teams",
+            "subtitle": "Drive more demand with the AI work platform that executes marketing work from brief to launch.",
             "needs": [
               "Faster campaign throughput",
               "One source of truth across channels",
               "AI that handles the repetitive work"
             ],
-            "value_prop": "Your AI-native marketing stack — agents that do the work, apps that show the truth."
+            "offering_bullets": [
+              "Marketing agents that plan, launch, and optimize campaigns end-to-end",
+              "Real-time budget reallocation - no analyst needed",
+              "One connected AI workspace, where every stakeholder and Marketing leaders work in sync."
+            ],
+            "outcomes": [
+              "Cut time-to-launch from weeks to hours with automated campaign setup & creation",
+              "Allocate budget & resources in real-time. No lag, no missed opportunities",
+              "Surface and track campaigns and marketing programs before they burn budget"
+            ]
           },
-          "products": [
-            {
-              "category": "AI Agents",
-              "name": "Performance Marketing Agent",
-              "tagline": "Campaign optimization",
-              "body": "Plans, launches, and optimizes campaigns across channels."
-            },
-            {
-              "category": "AI Agents",
-              "name": "Content Agent",
-              "tagline": "Content generation",
-              "body": "Generates and adapts content for different channels and audiences."
-            },
-            {
-              "category": "AI Agents",
-              "name": "Nova",
-              "tagline": "Campaign Scout",
-              "body": "Scans live performance data and surfaces what to do next."
-            },
-            {
-              "category": "Vibe Apps",
-              "name": "Sales Pipeline",
-              "tagline": "Track deals end-to-end",
-              "body": "Day-one ready board your team would use without setup."
-            }
-          ]
+          "stack_image": "/deliverables/image.png"
         },
         {
           "name": "Journey",
