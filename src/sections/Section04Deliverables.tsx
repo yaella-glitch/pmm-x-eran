@@ -478,7 +478,7 @@ function ImageCardStack({
                 position: "absolute",
                 inset: 0,
                 borderRadius: 14,
-                background: `url(${assetUrl(images[imgI])}) center / cover`,
+                background: `url(${assetUrl(images[imgI])}) top center / cover`,
                 border: "0.5px solid rgba(255,255,255,0.14)",
                 boxShadow: isFront
                   ? "0 20px 50px rgba(0,0,0,0.35)"

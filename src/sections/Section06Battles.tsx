@@ -84,26 +84,26 @@ function PersonaBlock({ title, items, accent }: { title: string; items: string[]
       <p
         style={{
           margin: 0,
-          fontSize: 10,
-          color: accent,
-          marginBottom: "0.4rem",
-          letterSpacing: "0.09em",
+          fontSize: 11,
+          color: "var(--c-amber)",
+          marginBottom: "0.65rem",
+          letterSpacing: "0.14em",
           textTransform: "uppercase",
           fontWeight: 700,
         }}
       >
         {title}
       </p>
-      <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
+      <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.45rem" }}>
         {items.map((n, i) => (
           <li
             key={i}
             style={{
-              fontSize: 11.5,
+              fontSize: 13,
               color: "var(--color-text)",
-              paddingLeft: "0.6rem",
+              paddingLeft: "0.7rem",
               borderLeft: `2px solid ${accent}`,
-              lineHeight: 1.4,
+              lineHeight: 1.45,
             }}
           >
             {n}
@@ -199,13 +199,13 @@ function SubviewBody({ subview, accent }: { subview: any; accent: string }) {
         {/* LEFT — persona card with 4 spaced sections */}
         <div
           style={{
-            padding: "1.1rem 1.25rem",
+            padding: "1.5rem 1.5rem 1.75rem",
             borderRadius: 14,
             background: `linear-gradient(160deg, ${accent}1f, ${accent}0a 70%)`,
             border: `0.5px solid ${accent}50`,
             display: "flex",
             flexDirection: "column",
-            gap: "1rem",
+            gap: "1.75rem",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>

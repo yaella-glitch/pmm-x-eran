@@ -172,17 +172,6 @@
       "summary": "Departments, end-to-end offering",
       "subviews": [
         {
-          "name": "Baseline",
-          "kind": "baseline",
-          "goal": "Lift vertical pipeline by 30% by Q4 — concentrated bets on IT, Project, Marketing.",
-          "headers": ["Department", "Leads", "CW %", "ARR", "Touch / No-touch"],
-          "rows": [
-            ["IT", "—", "—", "—", "— / —"],
-            ["Project", "—", "—", "—", "— / —"],
-            ["Marketing", "—", "—", "—", "— / —"]
-          ]
-        },
-        {
           "name": "Offering",
           "kind": "offering",
           "persona": {
@@ -215,6 +204,17 @@
             { "name": "Activation", "detail": "First workflow live", "asset": "" },
             { "name": "Sales conversation", "detail": "AE outreach", "asset": "" },
             { "name": "Closed-won", "detail": "ARR booked", "asset": "" }
+          ]
+        },
+        {
+          "name": "Baseline",
+          "kind": "baseline",
+          "goal": "Lift vertical pipeline by 30% by Q4 — concentrated bets on IT, Project, Marketing.",
+          "headers": ["Department", "Leads", "CW %", "ARR", "Touch / No-touch"],
+          "rows": [
+            ["IT", "—", "—", "—", "— / —"],
+            ["Project", "—", "—", "—", "— / —"],
+            ["Marketing", "—", "—", "—", "— / —"]
           ]
         }
       ]
